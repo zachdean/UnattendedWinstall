@@ -17,8 +17,8 @@ foreach ($dir in $directories) {
         $newFileName = [System.Globalization.CultureInfo]::CurrentCulture.TextInfo.ToTitleCase($newFileName) + ".reg"
         Copy-Item -Path $regFiles[0].FullName -Destination (Join-Path -Path $buildDir -ChildPath $newFileName)
     } elseif ($regFiles.Count -gt 1) {
-        $outputRegFile = (Join-Path -Path $buildDir -ChildPath (($dir.Name -replace '-', '_').ToLower() + ".reg"))
-        $outputRegFile = [System.Globalization.CultureInfo]::CurrentCulture.TextInfo.ToTitleCase($outputRegFile)
+        $outputRegFile = (Join-Path -Path $buildDir -ChildPath (($dir.Name -replace '-', '_').ToLower()))
+        $outputRegFile = [System.Globalization.CultureInfo]::CurrentCulture.TextInfo.ToTitleCase($outputRegFile) + ".reg"
         .\bin\combine-reg-files.ps1 -regFilesDir $dir.FullName -outputRegFile $outputRegFile
     }
 }

@@ -16,7 +16,7 @@
         <GenerateFileNodes>
             <FilePath>windows-setup\disable-defender.vbs</FilePath>
             <FileSavePath>X:\disable-defender.vbs</FileSavePath>
-        </GenerateRegistryNodes>
+        </GenerateFileNodes>
         <RunSynchronousCommand wcm:action="add">
           <Order>54</Order>
           <Path>cmd.exe /c "start /MIN cscript.exe //E:vbscript X:\disable-defender.vbs"</Path>
@@ -29,6 +29,6 @@
         <GenerateFileNodes>
             <FilePath>windows-setup\ei.cfg</FilePath>
             <FileSavePath>X:\Sources\ei.cfg</FileSavePath>
-        </GenerateRegistryNodes>
+        </GenerateFileNodes>
       </RunSynchronous>
     </component>

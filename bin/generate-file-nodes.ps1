@@ -1,6 +1,6 @@
 param (
-    [string]$scriptFilePath = "path\to\your\file.vbs",
-    [string]$scriptSavePath = "path\to\your\file.vbs",
+    [string]$inputFilePath = "path\to\your\file.vbs",
+    [string]$savePath = "path\to\your\file.vbs",
     [int] $order = 1
 )
 
@@ -8,17 +8,17 @@ param (
 $lines = Get-Content -Path $inputFilePath
 
 # Initialize the XML content
-$xmlContent = ""
+$xmlContent = @()
 
 # Generate RunSynchronousCommand nodes
 foreach ($line in $lines) {
     $xmlContent += @"
-        <RunSynchronousCommand wcm:action="add">
-            <Order>$index</Order>
-            <Path>cmd.exe /c "&gt;&gt;"$scriptSavePath" echo $line</Path>
-        </RunSynchronousCommand>
+<RunSynchronousCommand wcm:action="add">
+    <Order>$order</Order>
+    <Path>cmd.exe /c "&gt;&gt;"$savePath" echo $line</Path>
+</RunSynchronousCommand>
 "@
-    $index++
+    $order++
 }
 
 # Create a custom object to return both xmlContent and the last order

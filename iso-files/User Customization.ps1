@@ -1,3 +1,13 @@
+function Set-Registry {
+    param (
+        [string]$RegistryEdits
+    )
+    Set-Content -Path "$env:TEMP\user_customization.reg" -Value $RegistryEdits -Force
+    $path = "$env:TEMP\user_customization.reg"
+    (Get-Content $path) -replace "\?", "$" | Out-File $path    
+    Start-Process -FilePath "regedit.exe" -ArgumentList "/S `"$env:TEMP\user_customization.reg`"" -NoNewWindow -Wait
+}
+
 # Check if script is running as Administrator
 If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]"Administrator")) {
     Try {
@@ -222,33 +232,10 @@ $xamlWindow.FindName("EnableDefenderButton").Add_Click({
     If ($result -eq 'Yes') {
         Try {
             $MultilineComment = @"
-Windows Registry Editor Version 5.00
-
-; Enables Windows Defender to start in Windows Security
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Sense]
-"Start"=dword:00000003
-
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WdBoot]
-"Start"=dword:00000000
-
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WdFilter]
-"Start"=dword:00000000
-
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WdNisDrv]
-"Start"=dword:00000003
-
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WdNisSvc]
-"Start"=dword:00000003
-
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WinDefend]
-"Start"=dword:00000002
+~~Enable_Windows_Defender.reg~~
 "@
-Set-Content -Path "$env:TEMP\Enable_Windows_Defender.reg" -Value $MultilineComment -Force
-# edit reg file
-$path = "$env:TEMP\Enable_Windows_Defender.reg"
-(Get-Content $path) -replace "\?","$" | Out-File $path
-# import reg file
-Regedit.exe /S "$env:TEMP\Enable_Windows_Defender.reg"
+
+            Set-Registry $MultilineComment
             [System.Windows.MessageBox]::Show("Windows Defender has been enabled. Restart to Apply Changes.", "Success", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Information)
         } Catch {
             [System.Windows.MessageBox]::Show("Failed to enable Windows Defender.", "Error", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Error)

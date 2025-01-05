@@ -538,7 +538,7 @@ $capabilities = @(
 # Apply registry mods to prevent reinstallation and disable features
 function Set-AppsRegistry {
     $MultilineComment = @"
-%%Windows_Apps.reg%%
+~~Windows_Apps.reg~~
 "@
     Set-Registry "$MultilineComment"
 }
@@ -644,7 +644,7 @@ function Get-WindowsDefenderStatus {
 # Function to Enable Windows Defender
 function Enable-WindowsDefender {
         $MultilineComment = @"
-%%Enable_Windows_Defender.reg%%
+~~Enable_Windows_Defender.reg~~
 "@
     Set-Registry "$MultilineComment"
 
@@ -713,7 +713,7 @@ function Set-RecommendedPrivacySettings {
         Write-Host "Applying Recommended Privacy Settings . . ."
     }
         $MultilineComment = @"
-%%Recommended_Privacy_Settings.reg%%
+~~Recommended_Privacy_Settings.reg~~
 "@
     Set-Registry "$MultilineComment"
 
@@ -732,7 +732,7 @@ function Set-DefaultPrivacySettings {
     Write-Host "Applying Default Privacy Settings . . ."
 
         $MultilineComment = @"
-%%Default_Privacy_Settings.reg%%
+~~Default_Privacy_Settings.reg~~
 "@
     Set-Registry "$MultilineComment"
 
@@ -752,7 +752,7 @@ function Set-RecommendedUpdateSettings {
     }
 
         $MultilineComment = @"
-%%Recommended_Windows_Update_Settings.reg%%
+~~Recommended_Windows_Update_Settings.reg~~
 "@
     Set-Registry "$MultilineComment"
 
@@ -769,7 +769,7 @@ function Set-DefaultUpdateSettings {
     Write-Host "Applying Default Windows Update Settings . . ."
 
         $MultilineComment = @"
-%%Default_Windows_Update_Settings.reg%%
+~~Default_Windows_Update_Settings.reg~~
 "@
     Set-Registry "$MultilineComment"
 
@@ -784,7 +784,7 @@ function Set-DefaultUpdateSettings {
 function Set-RecommendedHKLMRegistry {
 
     $MultilineComment = @"
-%%Optimize_LocalMachine_Registry.reg%%
+~~Optimize_LocalMachine_Registry.reg~~
 "@
     Set-Registry "$MultilineComment"
 
@@ -795,7 +795,7 @@ function Set-RecommendedHKLMRegistry {
 
 function Set-DefaultHKLMRegistry {
     $MultilineComment = @"
-%%Restore_LocalMachine_Registry.reg%%
+~~Restore_LocalMachine_Registry.reg~~
 "@
     Set-Registry "$MultilineComment"
 
@@ -835,7 +835,7 @@ function Set-RecommendedHKCURegistry {
     }
 
     $MultilineComment = @"
-%%Optimize_User_Registry.reg%%
+~~Optimize_User_Registry.reg~~
 "@
     Set-Registry "$MultilineComment"
 
@@ -849,7 +849,7 @@ function Set-DefaultHKCURegistry {
     Write-Host "Restoring User Default Registry Settings . . ."
 
     $MultilineComment = @"
-%%Restore_User_Registry.reg%%
+~~Restore_User_Registry.reg~~
 "@
     Set-Registry "$MultilineComment"
 
