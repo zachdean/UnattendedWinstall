@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00
+
+; remove search from taskbar
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Search]
+"SearchboxTaskbarMode"=dword:00000000

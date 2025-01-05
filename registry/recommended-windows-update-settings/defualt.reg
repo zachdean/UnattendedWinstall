@@ -1,0 +1,26 @@
+Windows Registry Editor Version 5.00
+
+; --Windows Update Settings--
+
+; Disable Automatic Updates (Only Check for Updates Manually)
+; Notify Before Downloading and Installing Updates
+; Enable Notifications for Security Updates Only (Do Not Auto-Download)
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU]
+"NoAutoUpdate"=dword:00000001
+"AUOptions"=dword:00000002
+"AutoInstallMinorUpdates"=dword:00000000
+
+; Prevent Automatic Upgrade from Windows 10 22H2 to Windows 11 (Manual Upgrade Still Allowed)
+; Delay Feature and Quality updates for 1 year from install.
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate]
+"TargetReleaseVersion"=dword:00000001
+"TargetReleaseVersionInfo"="22H2"
+"ProductVersion"="Windows 10"
+"DeferFeatureUpdates"=dword:00000001
+"DeferFeatureUpdatesPeriodInDays"=dword:0000016d
+"DeferQualityUpdates"=dword:00000001
+"DeferQualityUpdatesPeriodInDays"=dword:00000007
+
+; Disables allowing downloads from other PCs (Delivery Optimization)
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization]
+"DODownloadMode"=dword:00000000

@@ -1,0 +1,26 @@
+Windows Registry Editor Version 5.00
+
+; --Set Default Windows Update Settings--
+
+; Enable Automatic Updates (Default: Automatic Download and Install)
+; Set Updates to Default Behavior (Automatic Download and Install)
+; Allow Automatic Installation of Minor Updates (Default: Allowed)
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU]
+"NoAutoUpdate"=-
+"AUOptions"=-    
+"AutoInstallMinorUpdates"=-
+
+; --Revert Windows 10 22H2 Auto Upgrade to 11 Block to Default--
+; Allow Feature and Quality updates
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate]
+"TargetReleaseVersion"=-
+"TargetReleaseVersionInfo"=-
+"ProductVersion"=-
+"DeferFeatureUpdates"=-
+"DeferFeatureUpdatesPeriodInDays"=-
+"DeferQualityUpdates"=-
+"DeferQualityUpdatesPeriodInDays"=-
+
+; Reverts Delivery Optimization settings to allow downloads from other PCs
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization]
+"DODownloadMode"=-

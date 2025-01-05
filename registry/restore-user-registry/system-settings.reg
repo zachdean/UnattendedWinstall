@@ -1,0 +1,54 @@
+Windows Registry Editor Version 5.00
+
+; SYSTEM AND SECURITY
+; set appearance options
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects]
+"VisualFXSetting"=-
+
+; animate controls and elements inside windows
+; fade or slide menus into view
+; fade or slide tooltips into view
+; fade out menu items after clicking
+; show shadows under mouse pointer
+; show shadows under windows
+; slide open combo boxes
+; smooth-scroll list boxes
+; smooth edges of screen fonts
+; dpi scaling
+; fix scaling for apps
+; menu show delay
+[HKEY_CURRENT_USER\Control Panel\Desktop]
+"UserPreferencesMask"=hex(2):9e,1e,07,80,12,00,00,00
+"FontSmoothing"="2"
+"LogPixels"=-
+"Win8DpiScaling"=dword:00000000
+"EnablePerProcessSystemDPI"=-
+"MenuShowDelay"="400"
+
+; SYSTEM
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\DWM]
+"UseDpiScaling"=-
+
+; variable refresh rate & optimizations for windowed games
+[HKEY_CURRENT_USER\Software\Microsoft\DirectX\UserGpuPreferences]
+"DirectXUserGlobalSettings"=-
+
+; Notification defaults
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\PushNotifications]
+"ToastEnabled"=-
+"LockScreenToastEnabled"=-
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings]
+"NOC_GLOBAL_SETTING_ALLOW_NOTIFICATION_SOUND"=-
+"NOC_GLOBAL_SETTING_ALLOW_TOASTS_ABOVE_LOCK"=-
+"NOC_GLOBAL_SETTING_ALLOW_CRITICAL_TOASTS_ABOVE_LOCK"=-
+
+[-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance]
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\windows.immersivecontrolpanel_cw5n1h2txyewy!microsoft.windows.immersivecontrolpanel]
+"Enabled"=-
+
+[-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.CapabilityAccess]
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.StartupApp]
+"Enabled"=dword:00000000

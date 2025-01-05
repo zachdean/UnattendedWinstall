@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00
+
+; battery options optimize for video quality
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\VideoSettings]
+"VideoQualityOnBattery"=dword:00000001

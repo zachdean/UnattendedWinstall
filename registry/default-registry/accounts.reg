@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00
+
+; use my sign in info after restart
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System]
+"DisableAutomaticRestartSignOn"=-

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<component name="Microsoft-Windows-Setup" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+      <UserData>
+        <ProductKey>
+          <Key>00000-00000-00000-00000-00000</Key>
+        </ProductKey>
+        <AcceptEula>true</AcceptEula>
+      </UserData>
+      <RunSynchronous>
+        <!--Disables Windows hardware checks -->
+        <GenerateRegistryNodes>
+            <Path>windows-setup\bypass-windows11-requirements.reg</Path>
+        </GenerateRegistryNodes>
+        <!--Disables Windows Defender from Starting -->
+        <GenerateFileNodes>
+            <FilePath>windows-setup\disable-defender.vbs</FilePath>
+            <FileSavePath>X:\disable-defender.vbs</FileSavePath>
+        </GenerateRegistryNodes>
+        <RunSynchronousCommand wcm:action="add">
+          <Order>54</Order>
+          <Path>cmd.exe /c "start /MIN cscript.exe //E:vbscript X:\disable-defender.vbs"</Path>
+        </RunSynchronousCommand>
+        <!--Prevents auto detection of Windows Edition and forces Windows Setup to show all available Editions of Windows during setup.-->        
+        <RunSynchronousCommand wcm:action="add">
+          <Order>55</Order>
+          <Path>cmd.exe /c del /f /q X:\Sources\ei.cfg</Path>
+        </RunSynchronousCommand>
+        <GenerateFileNodes>
+            <FilePath>windows-setup\ei.cfg</FilePath>
+            <FileSavePath>X:\Sources\ei.cfg</FileSavePath>
+        </GenerateRegistryNodes>
+      </RunSynchronous>
+    </component>

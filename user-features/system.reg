@@ -1,0 +1,9 @@
+Windows Registry Editor Version 5.00
+
+; SYSTEM
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\DWM]
+"UseDpiScaling"=dword:00000000
+
+; disable variable refresh rate & enable optimizations for windowed games
+[HKEY_CURRENT_USER\Software\Microsoft\DirectX\UserGpuPreferences]
+"DirectXUserGlobalSettings"="SwapEffectUpgradeEnable=1;VRROptimizeEnable=0;"

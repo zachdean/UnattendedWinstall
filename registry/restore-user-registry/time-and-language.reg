@@ -1,0 +1,22 @@
+Windows Registry Editor Version 5.00
+
+; TIME & LANGUAGE 
+; show the voice typing mic button
+; typing insights
+[HKEY_CURRENT_USER\Software\Microsoft\input\Settings]
+"IsVoiceTypingKeyEnabled"=-
+"InsightsEnabled"=-
+
+; capitalize the first letter of each sentence
+; play key sounds as i type
+; add a period after i double-tap the spacebar
+; show key background
+[HKEY_CURRENT_USER\Software\Microsoft\TabletTip\1.7]
+"EnableAutoShiftEngage"=-
+"EnableKeyAudioFeedback"=-
+"EnableDoubleTapSpace"=-
+"IsKeyBackgroundEnabled"=-
+
+; CLOCK AND REGION
+; notify me when the clock changes
+[-HKEY_CURRENT_USER\Control Panel\TimeDate]

@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00
+
+; allow other network users to control or disable the shared internet connection
+[HKEY_LOCAL_MACHINE\System\ControlSet001\Control\Network\SharedAccessConnection]
+"EnableControl"=dword:00000001

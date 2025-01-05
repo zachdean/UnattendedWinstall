@@ -1,0 +1,67 @@
+Windows Registry Editor Version 5.00
+
+; --LEGACY CONTROL PANEL--
+; EASE OF ACCESS
+; narrator
+[HKEY_CURRENT_USER\Software\Microsoft\Narrator\NoRoam]
+"DuckAudio"=-
+"WinEnterLaunchEnabled"=-
+"ScriptingEnabled"=-
+"OnlineServicesEnabled"=-
+"EchoToggleKeys"=-
+
+; narrator settings
+[HKEY_CURRENT_USER\Software\Microsoft\Narrator]
+"NarratorCursorHighlight"=-
+"CoupleNarratorCursorKeyboard"=-
+"IntonationPause"=-
+"ReadHints"=-
+"ErrorNotificationType"=-
+"EchoChars"=-
+"EchoWords"=-
+
+[-HKEY_CURRENT_USER\SOFTWARE\Microsoft\Narrator\NarratorHome]
+
+; ease of access settings
+[-HKEY_CURRENT_USER\Software\Microsoft\Ease of Access]
+
+[HKEY_CURRENT_USER\Control Panel\Accessibility]
+"Sound on Activation"=-
+"Warning Sounds"=-
+
+[HKEY_CURRENT_USER\Control Panel\Accessibility\HighContrast]
+"Flags"="126"
+
+[HKEY_CURRENT_USER\Control Panel\Accessibility\Keyboard Response]
+"Flags"="126"
+"AutoRepeatRate"="500"
+"AutoRepeatDelay"="1000"
+
+[HKEY_CURRENT_USER\Control Panel\Accessibility\MouseKeys]
+"Flags"="62"
+"MaximumSpeed"="80"
+"TimeToMaximumSpeed"="3000"
+
+[HKEY_CURRENT_USER\Control Panel\Accessibility\StickyKeys]
+"Flags"="510"
+
+[HKEY_CURRENT_USER\Control Panel\Accessibility\ToggleKeys]
+"Flags"="62"
+
+[HKEY_CURRENT_USER\Control Panel\Accessibility\SoundSentry]
+"Flags"="2"
+"FSTextEffect"="0"
+"TextEffect"="0"
+"WindowsEffect"="1"
+
+[HKEY_CURRENT_USER\Control Panel\Accessibility\SlateLaunch]
+"ATapp"="narrator"
+"LaunchAT"=dword:00000001
+
+; EASE OF ACCESS
+; magnifier settings 
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\ScreenMagnifier]
+"FollowCaret"=-
+"FollowNarrator"=-
+"FollowMouse"=-
+"FollowFocus"=-

@@ -1,0 +1,10 @@
+Windows Registry Editor Version 5.00
+
+; DEVICES
+; disable let windows manage my default printer
+[HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows]
+"LegacyDefaultPrinterMode"=dword:00000001
+
+; disable write with your fingertip
+[HKEY_CURRENT_USER\Software\Microsoft\TabletTip\EmbeddedInkControl]
+"EnableInkingWithTouch"=dword:00000000

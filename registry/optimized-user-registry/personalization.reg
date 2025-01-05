@@ -1,0 +1,30 @@
+Windows Registry Editor Version 5.00
+
+; PERSONALIZATION
+; dark theme 
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize]
+"AppsUseLightTheme"=dword:00000000
+"SystemUsesLightTheme"=dword:00000000
+"EnableTransparency"=dword:00000001
+
+; disable web search in start menu 
+[HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\Explorer]
+"DisableSearchBoxSuggestions"=dword:00000001
+
+; Remove meet now
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer]
+"NoStartMenuMFUprogramsList"=-
+"NoInstrumentation"=-
+"HideSCAMeetNow"=dword:00000001
+
+; remove search from taskbar
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Search]
+"SearchboxTaskbarMode"=dword:00000000
+
+; disable use dynamic lighting on my devices
+; disable compatible apps in the forground always control lighting
+; disable match my windows accent color
+[HKEY_CURRENT_USER\Software\Microsoft\Lighting]
+"AmbientLightingEnabled"=dword:00000000
+"ControlledByForegroundApp"=dword:00000000
+"UseSystemAccentColor"=dword:00000000

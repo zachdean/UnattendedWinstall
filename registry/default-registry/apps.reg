@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00
+
+; archive apps
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Appx]
+"AllowAutomaticAppArchiving"=-

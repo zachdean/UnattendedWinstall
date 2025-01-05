@@ -1,0 +1,9 @@
+Windows Registry Editor Version 5.00
+
+; disable use dynamic lighting on my devices
+; disable compatible apps in the forground always control lighting
+; disable match my windows accent color
+[HKEY_CURRENT_USER\Software\Microsoft\Lighting]
+"AmbientLightingEnabled"=dword:00000000
+"ControlledByForegroundApp"=dword:00000000
+"UseSystemAccentColor"=dword:00000000

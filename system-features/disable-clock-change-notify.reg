@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00
+
+; disable notify me when the clock changes
+[HKEY_CURRENT_USER\Control Panel\TimeDate]
+"DstNotification"=dword:00000000

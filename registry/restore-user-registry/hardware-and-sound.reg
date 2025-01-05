@@ -1,0 +1,26 @@
+Windows Registry Editor Version 5.00
+
+; HARDWARE AND SOUND
+; sound communications
+[HKEY_CURRENT_USER\Software\Microsoft\Multimedia\Audio]
+"UserDuckingPreference"=-
+
+; enhance pointer precision
+; mouse (default accel with epp on)
+[HKEY_CURRENT_USER\Control Panel\Mouse]
+"MouseSpeed"="1"
+"MouseThreshold1"="6"
+"MouseThreshold2"="10"
+"MouseSensitivity"="10"
+"SmoothMouseXCurve"=hex:00,00,00,00,00,00,00,00,15,6e,00,00,00,00,00,00,00,40,\
+  01,00,00,00,00,00,29,dc,03,00,00,00,00,00,00,00,28,00,00,00,00,00
+"SmoothMouseYCurve"=hex:00,00,00,00,00,00,00,00,fd,11,01,00,00,00,00,00,00,24,\
+  04,00,00,00,00,00,00,fc,12,00,00,00,00,00,00,c0,bb,01,00,00,00,00
+
+; DEVICES
+; let windows manage my default printer
+[HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows]
+"LegacyDefaultPrinterMode"=dword:ffffffff
+
+; write with your fingertip
+[-HKEY_CURRENT_USER\Software\Microsoft\TabletTip\EmbeddedInkControl]

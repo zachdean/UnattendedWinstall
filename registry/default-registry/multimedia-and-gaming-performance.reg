@@ -1,0 +1,18 @@
+Windows Registry Editor Version 5.00
+
+; Reverts Multimedia Applications' System Responsiveness and Network Throttling Index to Default Values
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile]
+"SystemResponsiveness"=dword:00000014
+"NetworkThrottlingIndex"=dword:ffffffff
+
+; Reverts Graphics Cards Priority for Gaming to Default
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games]
+"GPU Priority"=dword:00000002 ; Default value is 2
+
+; Reverts CPU Priority for Gaming to Default
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games]
+"Priority"=dword:00000002 ; Default value is 2
+
+; Reverts Games Scheduling Category to Default
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games]
+"Scheduling Category"="Medium" ; Default value is "Medium"

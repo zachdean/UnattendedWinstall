@@ -1,0 +1,227 @@
+Windows Registry Editor Version 5.00
+
+; --Revert Application and Feature Restrictions--
+
+; Allows Dev Home Installation
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\Orchestrator\UScheduler_Oobe\DevHomeUpdate]
+@=""
+
+; Allows New Outlook for Windows Installation
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\Orchestrator\UScheduler_Oobe\OutlookUpdate]
+@=""
+
+; Reverts Chat Auto Installation and Restores Chat Icon
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Communications]
+"ConfigureChatAutoInstall"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Chat]
+"ChatIcon"=dword:00000001
+
+; Enables News and Interests
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Dsh]
+"AllowNewsAndInterests"=-
+
+; Enables BitLocker Auto Encryption on Windows 11 24H2 and Onwards
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\BitLocker]
+"PreventDeviceEncryption"=-
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\EnhancedStorageDevices]
+"TCGSecurityActivationDisabled"=-
+
+; Enables Cortana
+[HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Windows Search]
+"AllowCortana"=-
+
+; Shows the Meet Now Button on the Taskbar
+; Shows Recently Added Apps in Start Menu
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer]
+"HideSCAMeetNow"=-
+
+; Re-enables WiFi-Sense
+[HKEY_LOCAL_MACHINE\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting]
+"Value"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots]
+"Value"=dword:00000001
+
+; Enables Tablet Mode
+; Default Sign-In Mode
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell]
+"TabletMode"=dword:00000001
+"SignInMode"=dword:00000000
+
+; Enables Xbox GameDVR
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\GameDVR]
+"AllowGameDVR"=-
+
+; Enables OneDrive Automatic Backups of Important Folders (Documents, Pictures etc.)
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\OneDrive]
+"KFMBlockOptIn"=-
+
+; Enables "Push To Install" feature in Windows
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\PushToInstall]
+"DisablePushToInstall"=-
+
+; Enables Windows Consumer Features Like App Promotions etc.
+; Enables Consumer Account State Content
+; Enables Cloud Optimized Content
+[HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CloudContent]
+"DisableWindowsConsumerFeatures"=-
+"DisableConsumerAccountStateContent"=-
+"DisableCloudOptimizedContent"=-
+
+; Unblocks "Allow my organization to manage my device" pop-up message
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WorkplaceJoin]
+"BlockAADWorkplaceJoin"=-
+
+; --Revert Start Menu Customization--
+
+; Restores Default Pinned Apps to the Start Menu
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PolicyManager\current\device\Start]
+"ConfigureStartPins"=-
+"ConfigureStartPins_ProviderSet"=-
+"ConfigureStartPins_WinningProvider"=-
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PolicyManager\providers\B5292708-1619-419B-9923-E5D9F3925E71\default\Device\Start]
+"ConfigureStartPins"=-
+"ConfigureStartPins_LastWrite"=-
+
+; --Revert File System Settings--
+
+; Revert Long File Paths to Default (Disabled)
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem]
+"LongPathsEnabled"=dword:00000000
+
+; --Revert Multimedia and Gaming Performance--
+
+; Reverts Multimedia Applications' System Responsiveness and Network Throttling Index to Default Values
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile]
+"SystemResponsiveness"=dword:00000014
+"NetworkThrottlingIndex"=dword:ffffffff
+
+; --Revert Gaming Performance--
+
+; Reverts Graphics Cards Priority for Gaming to Default
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games]
+"GPU Priority"=dword:00000002 ; Default value is 2
+
+; Reverts CPU Priority for Gaming to Default
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games]
+"Priority"=dword:00000002 ; Default value is 2
+
+; Reverts Games Scheduling Category to Default
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games]
+"Scheduling Category"="Medium" ; Default value is "Medium"
+
+; Removes "Take Ownership" from Context Menu
+[-HKEY_CLASSES_ROOT\*\shell\TakeOwnership]
+
+[-HKEY_CLASSES_ROOT\*\shell\runas]
+
+[-HKEY_CLASSES_ROOT\Directory\shell\TakeOwnership]
+
+[-HKEY_CLASSES_ROOT\Drive\shell\runas]
+
+; HARDWARE AND SOUND
+; lock
+[-HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings]
+
+; sleep
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings]
+
+; startup sound
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Authentication\LogonUI\BootAnimation]
+"DisableStartupSound"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\EditionOverrides]
+"UserSetting_DisableStartupSound"=dword:00000000
+
+; device installation settings
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata]
+"PreventDeviceMetadataFromNetwork"=dword:00000000
+
+; NETWORK AND INTERNET
+; allow other network users to control or disable the shared internet connection
+[HKEY_LOCAL_MACHINE\System\ControlSet001\Control\Network\SharedAccessConnection]
+"EnableControl"=dword:00000001
+
+; SYSTEM AND SECURITY
+; revert adjust for best performance of programs
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl]
+"Win32PrioritySeparation"=dword:00000002
+
+; remote assistance
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Remote Assistance]
+"fAllowToGetHelp"=dword:00000001
+
+; TROUBLESHOOTING
+; automatic maintenance
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Maintenance]
+"MaintenanceDisabled"=-
+
+; SECURITY AND MAINTENANCE
+; report problems
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting]
+
+; ACCOUNTS
+; use my sign in info after restart
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System]
+"DisableAutomaticRestartSignOn"=-
+
+; APPS
+; archive apps
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Appx]
+"AllowAutomaticAppArchiving"=-
+
+; PERSONALIZATION
+
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize]
+
+; don't hide most used list in start menu
+; show recently added apps
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer]
+
+; news and interests
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds]
+
+; SYSTEM
+; hardware accelerated gpu scheduling
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers]
+"HwSchMode"=-
+
+; storage sense
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\StorageSense]
+
+; --OTHER--
+; Enable update Microsoft Store apps automatically
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsStore]
+
+; --CAN'T DO NATIVELY--
+; UWP APPS
+; background apps
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy]
+"LetAppsRunInBackground"=-
+
+; widgets
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PolicyManager\default\NewsAndInterests\AllowNewsAndInterests]
+"value"=dword:00000001
+
+; NVIDIA
+; old nvidia sharpening
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\nvlddmkm\FTS]
+"EnableGR535"=dword:00000001
+
+; OTHER
+; 3d objects
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]
+
+; Restores Home Folder
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{f874310e-b6b7-47dc-bc84-b9e6b38f5903}]
+@="CLSID_MSGraphHomeFolder"
+
+[HKEY_USERS\.DEFAULT\Control Panel\Mouse]
+"MouseSpeed"="1"
+"MouseThreshold1"="6"
+"MouseThreshold2"="10"

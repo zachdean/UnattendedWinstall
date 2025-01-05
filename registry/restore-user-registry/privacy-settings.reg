@@ -1,0 +1,87 @@
+Windows Registry Editor Version 5.00
+
+; PRIVACY
+; show me notification in the settings app
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\SystemSettings\AccountNotifications]
+"EnableAccountNotifications"=-
+
+; allow location override
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\CPSS\Store\UserLocationOverridePrivacySetting]
+"Value"=dword:00000001
+
+; voice activation
+[-HKEY_CURRENT_USER\Software\Microsoft\Speech_OneCore\Settings]
+
+; other devices 
+[-HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\bluetoothSync]
+
+; let websites show me locally relevant content by accessing my language list 
+[HKEY_CURRENT_USER\Control Panel\International\User Profile]
+"HttpAcceptLanguageOptOut"=-
+
+; let windows improve start and search results by tracking app launches  
+[-HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\EdgeUI]
+
+; personal inking and typing dictionary
+[HKEY_CURRENT_USER\Software\Microsoft\InputPersonalization]
+"RestrictImplicitInkCollection"=dword:00000000
+"RestrictImplicitTextCollection"=dword:00000000
+
+[HKEY_CURRENT_USER\Software\Microsoft\InputPersonalization\TrainedDataStore]
+"HarvestContacts"=dword:00000001
+
+[HKEY_CURRENT_USER\Software\Microsoft\Personalization\Settings]
+"AcceptedPrivacyPolicy"=dword:00000001
+
+; feedback frequency
+[-HKEY_CURRENT_USER\SOFTWARE\Microsoft\Siuf]
+
+; SEARCH
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\SearchSettings]
+"IsDynamicSearchBoxEnabled"=-
+"IsDeviceSearchHistoryEnabled"=-
+"SafeSearchMode"=-
+"IsAADCloudSearchEnabled"=-
+"IsMSACloudSearchEnabled"=-
+
+[-HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\UserProfileEngagement]
+
+; suggested actions
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\SmartActionPlatform\SmartClipboard]
+"Disabled"=-
+
+; battery options optimize
+[-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\VideoSettings]
+
+; UWP APPS
+; disable windows input experience preload
+[HKEY_CURRENT_USER\Software\Microsoft\input]
+"IsInputAppPreloadEnabled"=-
+
+[-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Dsh]
+
+; copilot
+[-HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\WindowsCopilot]
+
+; ADVERTISING & PROMOTIONAL
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager]
+"ContentDeliveryAllowed"=dword:00000001
+"FeatureManagementEnabled"=dword:00000001
+"OemPreInstalledAppsEnabled"=dword:00000001
+"PreInstalledAppsEnabled"=dword:00000001
+"PreInstalledAppsEverEnabled"=dword:00000001
+"RotatingLockScreenEnabled"=dword:00000001
+"RotatingLockScreenOverlayEnabled"=dword:00000001
+"SilentInstalledAppsEnabled"=dword:00000001
+"SlideshowEnabled"=dword:00000001
+"SoftLandingEnabled"=dword:00000001
+"SubscribedContent-310093Enabled"=-
+"SubscribedContent-314563Enabled"=-
+"SubscribedContent-338388Enabled"=-
+"SubscribedContent-338389Enabled"=-
+"SubscribedContent-338393Enabled"=-
+"SubscribedContent-353694Enabled"=-
+"SubscribedContent-353696Enabled"=-
+"SubscribedContent-353698Enabled"=-
+"SubscribedContentEnabled"=dword:00000001
+"SystemPaneSuggestionsEnabled"=dword:00000001

@@ -1,0 +1,11 @@
+Windows Registry Editor Version 5.00
+
+; Restores Default Pinned Apps to the Start Menu
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PolicyManager\current\device\Start]
+"ConfigureStartPins"=-
+"ConfigureStartPins_ProviderSet"=-
+"ConfigureStartPins_WinningProvider"=-
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PolicyManager\providers\B5292708-1619-419B-9923-E5D9F3925E71\default\Device\Start]
+"ConfigureStartPins"=-
+"ConfigureStartPins_LastWrite"=-

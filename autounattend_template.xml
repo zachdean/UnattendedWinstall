@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State">
+  <!-- UnattendedWinstall https://github.com/memstechtips/UnattendedWinstall -->
+  <settings pass="offlineServicing"></settings>
+  <settings pass="windowsPE">
+    <template processorArchitecture="x86">
+      <Path>windows-setup\Microsoft.Windows.Setup.xml</Path>
+    </template>
+    <template processorArchitecture="arm64">
+      <Path>windows-setup\Microsoft.Windows.Setup.xml</Path>
+    </template>
+    <template processorArchitecture="amd64">
+      <Path>windows-setup\Microsoft.Windows.Setup.xml</Path>
+    </template>
+  </settings>
+  <settings pass="generalize"></settings>
+  <settings pass="specialize">
+    <template processorArchitecture="x86">
+      <Path>windows-deployment\Microsoft.Windows.Deplyoment.xml</Path>
+    </template>
+    <template processorArchitecture="arm64">
+      <Path>windows-deployment\Microsoft.Windows.Deplyoment.xml</Path>
+    </template>
+    <template processorArchitecture="amd64">
+      <Path>windows-deployment\Microsoft.Windows.Deplyoment.xml</Path>
+    </template>
+  </settings>
+  <settings pass="auditSystem"></settings>
+  <settings pass="auditUser"></settings>
+  <settings pass="oobeSystem">
+    <template processorArchitecture="x86">
+      <Path>windows-shell-setup\Microsoft.Windows.Shell.Setup.xml</Path>
+    </template>
+    <template processorArchitecture="arm64">
+      <Path>windows-shell-setup\Microsoft.Windows.Shell.Setup.xml</Path>
+    </template>
+    <template processorArchitecture="amd64">
+      <Path>windows-shell-setup\Microsoft.Windows.Shell.Setup.xml</Path>
+    </template>
+  </settings>
+  <Extensions>
+    <ExtractScript>
+param(
+    [xml] $Document
+);
+
+$scriptsDir = 'C:\Windows\Setup\Scripts\';
+foreach( $file in $Document.unattend.Extensions.File ) {
+    $path = [System.Environment]::ExpandEnvironmentVariables(
+        $file.GetAttribute( 'path' )
+    );
+    if( $path.StartsWith( $scriptsDir ) ) {
+        mkdir -Path $scriptsDir -ErrorAction 'SilentlyContinue';
+    }
+    $encoding = switch( [System.IO.Path]::GetExtension( $path ) ) {
+        { $_ -in '.ps1', '.xml' } { [System.Text.Encoding]::UTF8; }
+        { $_ -in '.reg', '.vbs', '.js' } { [System.Text.UnicodeEncoding]::new( $false, $true ); }
+        default { [System.Text.Encoding]::Default; }
+    };
+    [System.IO.File]::WriteAllBytes( $path, ( $encoding.GetPreamble() + $encoding.GetBytes( $file.InnerText.Trim() ) ) );
+}
+		</ExtractScript>
+    <GenerateFile path="C:\Windows\Temp\DotNet.ps1" filePath="iso-files\DotNet.ps1">
+    </GenerateFile>
+    <GenerateFile path="C:\Windows\Setup\Scripts\UWScript.ps1" filePath="build\files\UWScript.ps1">
+    </GenerateFile>
+    <GenerateFile path="C:\Users\Default\User Customization.ps1" filePath="iso-files\User Customization.ps1">
+    </GenerateFile>
+
+    <!--Start Menu Template (Credit:https://schneegans.de/windows/unattend-generator/)-->
+    <GenerateFile path="C:\Users\Default\AppData\Local\Microsoft\Windows\Shell\LayoutModification.xml" filePath="iso-files\LayoutModification.xml">
+    </GenerateFile>
+    <GenerateFile path="C:\Users\Default\User Customization.ps1" filePath="iso-files\User Customization.ps1">
+    </GenerateFile>
+  </Extensions>
+</unattend>

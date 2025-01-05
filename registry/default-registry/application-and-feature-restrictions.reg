@@ -1,0 +1,73 @@
+Windows Registry Editor Version 5.00
+
+; Allows Dev Home Installation
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\Orchestrator\UScheduler_Oobe\DevHomeUpdate]
+@=""
+
+; Allows New Outlook for Windows Installation
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\Orchestrator\UScheduler_Oobe\OutlookUpdate]
+@=""
+
+; Reverts Chat Auto Installation and Restores Chat Icon
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Communications]
+"ConfigureChatAutoInstall"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Chat]
+"ChatIcon"=dword:00000001
+
+; Enables News and Interests
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Dsh]
+"AllowNewsAndInterests"=-
+
+; Enables BitLocker Auto Encryption on Windows 11 24H2 and Onwards
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\BitLocker]
+"PreventDeviceEncryption"=-
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\EnhancedStorageDevices]
+"TCGSecurityActivationDisabled"=-
+
+; Enables Cortana
+[HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Windows Search]
+"AllowCortana"=-
+
+; Shows the Meet Now Button on the Taskbar
+; Shows Recently Added Apps in Start Menu
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer]
+"HideSCAMeetNow"=-
+
+; Re-enables WiFi-Sense
+[HKEY_LOCAL_MACHINE\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting]
+"Value"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots]
+"Value"=dword:00000001
+
+; Enables Tablet Mode
+; Default Sign-In Mode
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell]
+"TabletMode"=dword:00000001
+"SignInMode"=dword:00000000
+
+; Enables Xbox GameDVR
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\GameDVR]
+"AllowGameDVR"=-
+
+; Enables OneDrive Automatic Backups of Important Folders (Documents, Pictures etc.)
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\OneDrive]
+"KFMBlockOptIn"=-
+
+; Enables "Push To Install" feature in Windows
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\PushToInstall]
+"DisablePushToInstall"=-
+
+; Enables Windows Consumer Features Like App Promotions etc.
+; Enables Consumer Account State Content
+; Enables Cloud Optimized Content
+[HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CloudContent]
+"DisableWindowsConsumerFeatures"=-
+"DisableConsumerAccountStateContent"=-
+"DisableCloudOptimizedContent"=-
+
+; Unblocks "Allow my organization to manage my device" pop-up message
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WorkplaceJoin]
+"BlockAADWorkplaceJoin"=-

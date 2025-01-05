@@ -1,0 +1,51 @@
+Windows Registry Editor Version 5.00
+
+; GAMING
+; game bar
+[HKEY_CURRENT_USER\System\GameConfigStore]
+"GameDVR_Enabled"=dword:00000000
+
+; enable open xbox game bar using game controller
+; game mode
+[HKEY_CURRENT_USER\Software\Microsoft\GameBar]
+"UseNexusForGameBarEnabled"=-
+"AutoGameModeEnabled"=-
+
+; other settings
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\GameDVR]
+"AppCaptureEnabled"=-
+"AudioEncodingBitrate"=-
+"AudioCaptureEnabled"=-
+"CustomVideoEncodingBitrate"=-
+"CustomVideoEncodingHeight"=-
+"CustomVideoEncodingWidth"=-
+"HistoricalBufferLength"=-
+"HistoricalBufferLengthUnit"=-
+"HistoricalCaptureEnabled"=-
+"HistoricalCaptureOnBatteryAllowed"=-
+"HistoricalCaptureOnWirelessDisplayAllowed"=-
+"MaximumRecordLength"=-
+"VideoEncodingBitrateMode"=-
+"VideoEncodingResolutionMode"=-
+"VideoEncodingFrameRateMode"=-
+"EchoCancellationEnabled"=-
+"CursorCaptureEnabled"=-
+"VKToggleGameBar"=-
+"VKMToggleGameBar"=-
+"VKSaveHistoricalVideo"=-
+"VKMSaveHistoricalVideo"=-
+"VKToggleRecording"=-
+"VKMToggleRecording"=-
+"VKTakeScreenshot"=-
+"VKMTakeScreenshot"=-
+"VKToggleRecordingIndicator"=-
+"VKMToggleRecordingIndicator"=-
+"VKToggleMicrophoneCapture"=-
+"VKMToggleMicrophoneCapture"=-
+"VKToggleCameraCapture"=-
+"VKMToggleCameraCapture"=-
+"VKToggleBroadcast"=-
+"VKMToggleBroadcast"=-
+"MicrophoneCaptureEnabled"=-
+"SystemAudioGain"=-
+"MicrophoneGain"=-

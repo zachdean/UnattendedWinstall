@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<component name="Microsoft-Windows-Deployment" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+<RunSynchronous>
+    <RunSynchronousCommand wcm:action="add">
+      <Order>1</Order>
+      <!-- Loads Scripts in File -->
+      <Path>powershell.exe -NoProfile -WindowStyle Hidden -Command "$xml = [xml]::new(); $xml.Load('C:\Windows\Panther\unattend.xml'); $sb = [scriptblock]::Create( $xml.unattend.Extensions.ExtractScript ); Invoke-Command -ScriptBlock $sb -ArgumentList $xml;"</Path>
+    </RunSynchronousCommand>
+    <RunSynchronousCommand wcm:action="add">
+      <Order>2</Order>
+      <!-- Disables User Account Control -->
+      <Path>reg.exe add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v EnableLUA /t REG_DWORD /d 0 /f</Path>
+    </RunSynchronousCommand>
+    <RunSynchronousCommand wcm:action="add">
+      <Order>3</Order>
+      <!-- Enables Running of PowerShell Scripts -->
+      <Path>powershell.exe -NoProfile -WindowStyle Hidden -Command "Set-ExecutionPolicy RemoteSigned -Scope LocalMachine -Force"</Path>
+    </RunSynchronousCommand>
+    <RunSynchronousCommand wcm:action="add">
+      <Order>4</Order>
+      <!-- Skips Forced Microsoft Account Creation -->
+      <Path>reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OOBE" /v BypassNRO /t REG_DWORD /d 1 /f</Path>
+    </RunSynchronousCommand>
+    <RunSynchronousCommand wcm:action="add">
+      <Order>5</Order>
+      <!-- Runs Script to Enable .NET3.5 from Windows Installation Media -->
+      <Path>powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "C:\Windows\Temp\DotNet.ps1"</Path>
+    </RunSynchronousCommand>
+    <RunSynchronousCommand wcm:action="add">
+      <Order>6</Order>
+      <!-- Creates Specialize Phase Marker File -->
+      <Path>cmd.exe /c echo Specialized Setup &gt; "C:\specialize_marker.txt"</Path>
+    </RunSynchronousCommand>
+    <RunSynchronousCommand wcm:action="add">
+      <Order>7</Order>
+      <!-- Runs Recommended UnattendedWinstall Scripts -->
+      <Path>powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "C:\Windows\Setup\Scripts\UWScript.ps1"</Path>
+    </RunSynchronousCommand>
+    <RunSynchronousCommand wcm:action="add">
+      <Order>8</Order>
+      <!-- Creates UnattendedWinstall Script Shortcut on Desktop -->
+      <Path>powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "C:\Windows\Temp\UWScriptShortcut.ps1"</Path>
+    </RunSynchronousCommand>
+    <RunSynchronousCommand wcm:action="add">
+      <Order>9</Order>
+      <!-- Loads Default User Registry Hive to Make Changes to it -->
+      <Path>reg.exe load "HKU\DefaultUser" "C:\Users\Default\NTUSER.DAT"</Path>
+    </RunSynchronousCommand>
+    <RunSynchronousCommand wcm:action="add">
+      <Order>10</Order>
+      <!-- Add Registry Key to Run User Account Customization Script -->
+      <Path>reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Runonce" /v "CurrentUser" /t REG_SZ /d "cmd.exe /c powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -File \"C:\Users\Default\User Customization.ps1\"" /f</Path>
+    </RunSynchronousCommand>
+    <RunSynchronousCommand wcm:action="add">
+      <Order>11</Order>
+      <!-- Unloads Default User Registry Hive. -->
+      <Path>reg.exe unload "HKU\DefaultUser"</Path>
+    </RunSynchronousCommand>
+    <RunSynchronousCommand wcm:action="add">
+      <!-- Cleanup temporary .ps1 and .reg scripts inside C:\Windows\Temp -->
+      <Order>12</Order>
+      <Path>cmd /c del /f /q "C:\Windows\Temp\*.ps1" "C:\Windows\Temp\*.reg"</Path>
+    </RunSynchronousCommand>
+    <RunSynchronousCommand wcm:action="add">
+      <Order>13</Order>
+      <!-- Deletes Specialize Phase Marker File -->
+      <Path>cmd.exe /c del /q "C:\specialize_marker.txt"</Path>
+    </RunSynchronousCommand>
+    <RunSynchronousCommand wcm:action="add">
+      <!-- Disable All Network Adapters Temporarily so Windows Doesn't Update During OOBE -->
+      <Order>14</Order>
+      <Path>powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -Command "Get-NetAdapter | Disable-NetAdapter -Confirm:$false"</Path>
+    </RunSynchronousCommand>
+  </RunSynchronous>
+</component>

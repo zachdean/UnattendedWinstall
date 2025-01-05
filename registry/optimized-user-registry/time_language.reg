@@ -1,0 +1,18 @@
+Windows Registry Editor Version 5.00
+
+; TIME & LANGUAGE 
+; disable show the voice typing mic button
+; disable typing insights
+[HKEY_CURRENT_USER\Software\Microsoft\input\Settings]
+"IsVoiceTypingKeyEnabled"=dword:00000000
+"InsightsEnabled"=dword:00000000
+
+; disable capitalize the first letter of each sentence
+; disable play key sounds as i type
+; disable add a period after i double-tap the spacebar
+; disable show key background
+[HKEY_CURRENT_USER\Software\Microsoft\TabletTip\1.7]
+"EnableAutoShiftEngage"=dword:00000000
+"EnableKeyAudioFeedback"=dword:00000000
+"EnableDoubleTapSpace"=dword:00000000
+"IsKeyBackgroundEnabled"=dword:00000000

@@ -1,0 +1,23 @@
+Windows Registry Editor Version 5.00
+
+; disable narrator
+[HKEY_CURRENT_USER\Software\Microsoft\Narrator\NoRoam]
+"DuckAudio"=dword:00000000
+"WinEnterLaunchEnabled"=dword:00000000
+"ScriptingEnabled"=dword:00000000
+"OnlineServicesEnabled"=dword:00000000
+"EchoToggleKeys"=dword:00000000
+
+; disable narrator settings
+[HKEY_CURRENT_USER\Software\Microsoft\Narrator]
+"NarratorCursorHighlight"=dword:00000000
+"CoupleNarratorCursorKeyboard"=dword:00000000
+"IntonationPause"=dword:00000000
+"ReadHints"=dword:00000000
+"ErrorNotificationType"=dword:00000000
+"EchoChars"=dword:00000000
+"EchoWords"=dword:00000000
+
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Narrator\NarratorHome]
+"MinimizeType"=dword:00000000
+"AutoStart"=dword:00000000

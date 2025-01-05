@@ -1,0 +1,12 @@
+Windows Registry Editor Version 5.00
+
+; GAMING
+; disable game bar
+[HKEY_CURRENT_USER\System\GameConfigStore]
+"GameDVR_Enabled"=dword:00000000
+
+; disable enable open xbox game bar using game controller
+; enable game mode
+[HKEY_CURRENT_USER\Software\Microsoft\GameBar]
+"UseNexusForGameBarEnabled"=dword:00000000
+"AutoGameModeEnabled"=dword:00000001
