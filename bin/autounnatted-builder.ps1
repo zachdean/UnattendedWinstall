@@ -3,6 +3,70 @@ param (
     [string]$outputDirectory = "./build"
 )
 
+function Replace-FileNodes(
+    [System.Xml.XmlDocument]$document,
+    [System.Xml.XmlNamespaceManager]$namespaceManager
+) {
+    # Process each file node
+    foreach ($fileNode in $templateXml.SelectNodes("//unattend:GenerateFile", $namespaceManager)) {
+        $filePath = $fileNode.SelectSingleNode("unattend:FilePath", $namespaceManager).InnerText
+        Write-Host "Processing GenerateFile node: $filePath"
+        $fileContent = Get-Content -Path $filePath -Raw
+
+        $fileContent = @"
+              <![CDATA[
+        $fileContent
+        ]]>
+"@
+
+        # Replace the file node with the file content
+        $parentNode = $fileNode.ParentNode
+        $textNode = $templateXml.CreateTextNode($fileContent)
+
+        Update-Attributes -templateNode $fileNode -importedNode $textNode
+
+        $parentNode.ReplaceChild($textNode, $fileNode) | Out-Null
+    }
+}
+
+function Replace-TemplateNodes(
+    [System.Xml.XmlDocument]$document,
+    [System.Xml.XmlNamespaceManager]$namespaceManager
+) {
+    # Process each template node
+    foreach ($templateNode in $templateXml.SelectNodes("//unattend:template", $namespaceManager)) {
+        $templateFilePath = $templateNode.SelectSingleNode("unattend:Path", $namespaceManager).InnerText
+        $templateOutput = & .\bin\template-builder.ps1 -xmlFilePath $templateFilePath
+
+        # Replace the template node with the processed XML content
+        $parentNode = $templateNode.ParentNode
+        $importedNode = $templateXml.ImportNode($templateOutput.ChildNodes[0], $true)
+
+        Update-Attributes -templateNode $templateNode -importedNode $importedNode
+        
+        $parentNode.ReplaceChild($importedNode, $templateNode) | Out-Null
+
+    }
+}
+
+function Update-Attributes(
+    [System.Xml.XmlNode]$templateNode,
+    [System.Xml.XmlNode]$importedNode
+) {
+    # Copy attributes from the template node to the imported node
+    foreach ($attribute in $templateNode.Attributes) {
+        if ($importedNode.Attributes[$attribute.Name]) {
+            $importedNode.Attributes[$attribute.Name].Value = $attribute.Value
+        }
+        else {
+            $newAttribute = $templateXml.CreateAttribute($attribute.Name)
+            $newAttribute.Value = $attribute.Value
+            $importedNode.Attributes.Append($newAttribute) | Out-Null
+        }
+    }
+}
+
+
 # Ensure the output directory exists
 if (-not (Test-Path -Path $outputDirectory)) {
     New-Item -ItemType Directory -Path $outputDirectory | Out-Null
@@ -20,20 +84,20 @@ $namespaceManager = New-Object System.Xml.XmlNamespaceManager($templateXml.NameT
 $namespaceManager.AddNamespace("unattend", "urn:schemas-microsoft-com:unattend")
 $namespaceManager.AddNamespace("wcm", "http://schemas.microsoft.com/WMIConfig/2002/State")
 
-# Process each template node
-foreach ($templateNode in $templateXml.SelectNodes("//unattend:template", $namespaceManager)) {
-    $templateFilePath = $templateNode.SelectSingleNode("unattend:Path", $namespaceManager).InnerText
-    $templateOutput = & .\bin\template-builder.ps1 -xmlFilePath $templateFilePath
-
-    # Replace the template node with the processed XML content
-    $parentNode = $templateNode.ParentNode
-    $importedNode = $templateXml.ImportNode($templateOutput, $true)
-    Write-Host $importedNode.Name
-    $parentNode.ReplaceChild($importedNode, $templateNode) | Out-Null
-}
+Replace-TemplateNodes -document $templateXml -namespaceManager $namespaceManager
+Replace-FileNodes -document $templateXml -namespaceManager $namespaceManager
 
 # Save the modified content to the output directory
 $outputFilePath = Join-Path -Path $outputDirectory -ChildPath "autounattend.xml"
 $templateXml.Save($outputFilePath)
+
+# Read the modified XML content into a string
+$modifiedXmlString = Get-Content -Path $outputFilePath -Raw
+
+# Replace `xmls=""` with an empty string
+$modifiedXmlString = $modifiedXmlString -replace ' xmlns=""', ''
+
+# Save the modified content back to the output file
+Set-Content -Path $outputFilePath -Value $modifiedXmlString
 
 Write-Host "XML processing completed and saved to $outputFilePath"
