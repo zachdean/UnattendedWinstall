@@ -164,6 +164,4 @@ Write-Host $compontent.Name
 Process-AllNodes -xmlContent $compontent  -document $xmlContent
 
 # Save the modified content back to the file
-$xmlContent.Save($outputPath)
-
-Write-Host "XML processing completed and saved to $outputPath"
+return $xmlContent.ChildNodes[0]
