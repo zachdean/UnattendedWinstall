@@ -1,6 +1,5 @@
 param (
-    [string]$xmlFilePath,
-    [string]$outputPath
+    [string]$xmlFilePath
 )
 
 # Function to process GenerateFileNodes nodes
@@ -18,15 +17,13 @@ function Process-GenerateFileNodes {
     $generatedNodes = & .\bin\generate-file-nodes.ps1 -inputFilePath $filePath -savePath $fileSavePath -order $order
 
     $parentNode = $node.ParentNode
-    
 
     foreach ($generatedNode in $generatedNodes.XmlContent) {
         $commandNode = Create-RunSynchronousCommandNode -xmlString $generatedNode -document $document
-        $parentNode.InsertBefore($commandNode, $node)
+        $parentNode.InsertBefore($commandNode, $node) | Out-Null
     }
     
-    $parentNode.RemoveChild($node)
-
+    $parentNode.RemoveChild($node) | Out-Null
     $order = $generatedNodes.LastOrder
     return $order
 }
@@ -48,10 +45,10 @@ function Process-GenerateRegistryNodes {
 
     foreach ($generatedNode in $generatedNodes.XmlContent) {
         $commandNode = Create-RunSynchronousCommandNode -xmlString $generatedNode -document $document
-        $parentNode.InsertBefore($commandNode, $node)
+        $parentNode.InsertBefore($commandNode, $node) | Out-Null
     }
     
-    _ = $parentNode.RemoveChild($node)   
+    $parentNode.RemoveChild($node) | Out-Null
     $order = [int]$generatedNodes.LastOrder
     return $order
 }
@@ -103,7 +100,6 @@ function Create-RunSynchronousCommandNode {
         [string]$xmlString,
         [System.Xml.XmlDocument]$document
     )
-
     $wrappedXmlString = @"
         <element xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State">
         $xmlString
@@ -112,7 +108,14 @@ function Create-RunSynchronousCommandNode {
 
     # Load the modified string as an XML document
     $xmlContent = New-Object System.Xml.XmlDocument
-    $xmlContent.LoadXml($wrappedXmlString)
+
+    try {
+        $xmlContent.LoadXml($wrappedXmlString)
+    }
+    catch {
+        Write-Host "Error loading XML content: $wrappedXmlString"
+    }
+
 
     return $document.ImportNode($xmlContent.SelectSingleNode("//RunSynchronousCommand"), $true)
 }

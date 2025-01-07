@@ -4,6 +4,8 @@ param (
     [int] $order = 1
 )
 
+$escapedSavePath = [System.Security.SecurityElement]::Escape($savePath)
+
 # Read the input file
 $lines = Get-Content -Path $inputFilePath
 
@@ -12,10 +14,11 @@ $xmlContent = @()
 
 # Generate RunSynchronousCommand nodes
 foreach ($line in $lines) {
+    $escapedLine = [System.Security.SecurityElement]::Escape($line)
     $xmlContent += @"
 <RunSynchronousCommand wcm:action="add">
     <Order>$order</Order>
-    <Path>cmd.exe /c "&gt;&gt;"$savePath" echo $line</Path>
+    <Path>cmd.exe /c &quot;&gt;&gt;$escapedSavePath echo $escapedLine&quot;</Path>
 </RunSynchronousCommand>
 "@
     $order++
