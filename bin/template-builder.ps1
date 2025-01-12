@@ -14,7 +14,7 @@ function Process-GenerateFileNodes {
     $fileSavePath = $node.SelectSingleNode("FileSavePath", $namespaceManager).InnerText
     Write-Host $order
     # Call the generate-reg-nodes.ps1 script and capture the output
-    $generatedNodes = & .\bin\generate-file-nodes.ps1 -inputFilePath $filePath -savePath $fileSavePath -order $order
+    $generatedNodes = & $PSScriptRoot\generate-file-nodes.ps1 -inputFilePath $filePath -savePath $fileSavePath -order $order
 
     $parentNode = $node.ParentNode
 
@@ -38,7 +38,7 @@ function Process-GenerateRegistryNodes {
     $filePath = $node.SelectSingleNode("Path", $namespaceManager).InnerText
 
     # Call the generate-reg-nodes.ps1 script and capture the output
-    $generatedNodes = & .\bin\generate-reg-nodes.ps1 -regFilePath $filePath -order $order
+    $generatedNodes = & $PSScriptRoot\generate-reg-nodes.ps1 -regFilePath $filePath -order $order
 
     $parentNode = $node.ParentNode
     
@@ -163,5 +163,5 @@ Write-Host $compontent.Name
 # Process all nodes in the XML tree
 Process-AllNodes -xmlContent $compontent  -document $xmlContent
 
-# Save the modified content back to the file
+# Return the template node
 return $xmlContent.ChildNodes[0]

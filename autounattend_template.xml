@@ -68,18 +68,17 @@
     <GenerateFile path="C:\Windows\Setup\Scripts\UWScript.ps1">
       <FilePath>build\files\UWScript.ps1</FilePath>
     </GenerateFile>
-    <GenerateFile path="C:\Users\Default\User Customization.ps1" >
-      <FilePath>iso-files\User Customization.ps1</FilePath>
+    <GenerateFile path="C:\Windows\Temp\UWScriptShortcut.ps1" >
+      <FilePath>iso-files\UWScriptShortcut.ps1</FilePath>
     </GenerateFile>
-
-    <!--Start
+    <GenerateFile path="C:\Users\Default\User Customization.ps1" >
+      <FilePath>"iso-files\User Customization.ps1"</FilePath>
+    </GenerateFile>
+        <!--Start
     Menu Template (Credit:https://schneegans.de/windows/unattend-generator/)-->
     <GenerateFile
       path="C:\Users\Default\AppData\Local\Microsoft\Windows\Shell\LayoutModification.xml" >
       <FilePath>iso-files\LayoutModification.xml</FilePath>
-    </GenerateFile>
-    <GenerateFile path="C:\Users\Default\User Customization.ps1" >
-      <FilePath>"iso-files\User Customization.ps1"</FilePath>
     </GenerateFile>
   </Extensions>
 </unattend>

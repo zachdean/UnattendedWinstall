@@ -9,23 +9,23 @@ function Replace-FileNodes(
 ) {
     # Process each file node
     foreach ($fileNode in $templateXml.SelectNodes("//unattend:GenerateFile", $namespaceManager)) {
-        $filePath = $fileNode.SelectSingleNode("unattend:FilePath", $namespaceManager).InnerText
+        $filePath = $fileNode.SelectSingleNode("unattend:FilePath", $namespaceManager).InnerText.Trim('"')
         Write-Host "Processing GenerateFile node: $filePath"
-        $fileContent = Get-Content -Path $filePath -Raw
-
-        $fileContent = @"
-              <![CDATA[
-        $fileContent
-        ]]>
-"@
+        $fileDirectory = Split-Path -Path $templateFilePath -Parent
+        $targetFilePath = Join-Path -Path $fileDirectory -ChildPath $filePath
+        Write-Host "Target file path: $targetFilePath"
+        $fileContent = Get-Content -Path $targetFilePath -Raw
 
         # Replace the file node with the file content
         $parentNode = $fileNode.ParentNode
-        $textNode = $templateXml.CreateTextNode($fileContent)
+        $cdata = $templateXml.CreateCDataSection($fileContent)
+        $element = $templateXml.CreateElement("File")
+        
+        Update-Attributes -templateNode $fileNode -importedNode $element
 
-        Update-Attributes -templateNode $fileNode -importedNode $textNode
+        $element.AppendChild($cdata) | Out-Null
 
-        $parentNode.ReplaceChild($textNode, $fileNode) | Out-Null
+        $parentNode.ReplaceChild($element, $fileNode) | Out-Null
     }
 }
 
@@ -36,7 +36,7 @@ function Replace-TemplateNodes(
     # Process each template node
     foreach ($templateNode in $templateXml.SelectNodes("//unattend:template", $namespaceManager)) {
         $templateFilePath = $templateNode.SelectSingleNode("unattend:Path", $namespaceManager).InnerText
-        $templateOutput = & .\bin\template-builder.ps1 -xmlFilePath $templateFilePath
+        $templateOutput = & $PSScriptRoot\template-builder.ps1 -xmlFilePath $templateFilePath
 
         # Replace the template node with the processed XML content
         $parentNode = $templateNode.ParentNode
@@ -51,8 +51,20 @@ function Replace-TemplateNodes(
 
 function Update-Attributes(
     [System.Xml.XmlNode]$templateNode,
-    [System.Xml.XmlNode]$importedNode
+    [System.Xml.XmlElement]$importedNode
 ) {
+    if ($templateNode.Attributes -eq $null) {
+        return
+    }
+
+    if ($importedNode.Attributes -eq $null) {
+        foreach ($attribute in $templateNode.Attributes) {
+            $importedNode.SetAttributeNode($attribute) | Out-Null
+        }
+
+        return
+    }
+
     # Copy attributes from the template node to the imported node
     foreach ($attribute in $templateNode.Attributes) {
         if ($importedNode.Attributes[$attribute.Name]) {
